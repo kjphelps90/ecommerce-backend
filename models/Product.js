@@ -10,7 +10,6 @@ class Product extends Model {}
 Product.init(
   {
     id: {
-      id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -41,7 +40,7 @@ Product.init(
       references: {
         model: "category",
         key: "id",
-      }
+      },
     }
     // define columns
   },
@@ -51,7 +50,7 @@ Product.init(
     freezeTableName: true,
     underscored: true,
     modelName: 'product',
-  }
+  },
 );
 
 module.exports = Product;
