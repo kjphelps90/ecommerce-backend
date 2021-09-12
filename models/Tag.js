@@ -8,9 +8,9 @@ Tag.init(
   {
     id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-      allow: false,
     },
     tag_name: {
       type: DataTypes.STRING
