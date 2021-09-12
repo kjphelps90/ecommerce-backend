@@ -3,10 +3,10 @@ const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
   const categories = await Category.findAll({
-    include: [{model: Product}],
+    include: [{model: Product}]
   });
   res.status(200).json(categories);
 } catch (err) {
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
   // be sure to include its associated Products
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const category = await Category.findByPk(req.params.id, {
       include: [{ model: Product}],
@@ -29,43 +29,43 @@ router.get('/:id', (req, res) => {
   // be sure to include its associated Products
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const newCategory = await Category.create({
       category_name: req.body.category_name,
     });
-    res(200).json(newCategory);
+    res.status(200).json(newCategory);
   } catch (err) {
-    res(400).json(err);
+    res.status(400).json(err);
   }
   // create a new category
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const updateCategory = await Category.update(req.body, {
       where: {
         id: req.params.id,
       },
     });
-    res(200).json(updateCategory);
+    res.status(200).json(updateCategory);
   }
   catch (err) {
-    res(400).json({ message: "No Category with that ID"});
+    res.status(400).json({ message: "No Category with that ID"});
   }    
   // update a category by its `id` value
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
   const deleteCategory = await Category.destroy({
     where: {
       id: req.params.id,
     }
   });
-  res(200).json({ message: "Category has been removed."})
+  res.status(200).json({ message: "Category has been removed."})
 } catch (err) {
-  res(400).json({ message: "No Category with that ID"})
+  res.status(400).json({ message: "No Category with that ID"})
 }
   // delete a category by its `id` value
 });
