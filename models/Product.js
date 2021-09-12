@@ -18,11 +18,11 @@ Product.init(
       allowNull: false
     },
     stock: {
-      type: DataTypes.INT,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     category_id: {
-      type: DataTypes.INT,
+      type: DataTypes.INTEGER,
       allowNull: false
     }
     // define columns
